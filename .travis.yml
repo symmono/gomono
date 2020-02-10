@@ -5,6 +5,10 @@ language: go
 go:
   - 1.14.x
 
+env:
+  global:
+    - TRAVIS_GO_VERSION="$(cat .go-version)"
+
 # use the latest ubuntu environment (18.04) available on travis
 dist: bionic
 
