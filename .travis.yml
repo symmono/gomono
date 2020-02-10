@@ -1,17 +1,16 @@
 language: go
 
-# You don't need to test on very old versions of the Go compiler. It's the user's
-# responsibility to keep their compiler up to date.
 go:
-  - 1.14.x
+  - 1.13.x
 
 # use the latest ubuntu environment (18.04) available on travis
-dist: trusty
+dist: bionic
 
-# install packages, before running scripts
-#before_install:
-#  - go get github.com/mattn/goveralls
+##install packages, before running scripts
+before_install:
+  - go get github.com/mattn/goveralls
+  - if ! go get github.com/golang/tools/cmd/cover; then go get golang.org/x/tools/cmd/cover; fi
 
 # script
 script:
-  - gotest -v ./...
+  - go test ./... -v
