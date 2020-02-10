@@ -5,19 +5,12 @@ language: go
 go:
   - 1.14.x
 
-# Make sure project can also be built on travis for clones of the repo
-go_import_path: github.com/symmono/gomono
-
-env:
-  global:
-    - TRAVIS_GO_VERSION="$(cat .go-version)"
-
 # use the latest ubuntu environment (18.04) available on travis
 dist: trusty
 
 # install packages, before running scripts
-before_install:
-  - go get github.com/mattn/goveralls
+#before_install:
+#  - go get github.com/mattn/goveralls
 
 # script
 script:
