@@ -1,0 +1,4 @@
+mode: set
+github.com/symmono/gomono/repo/composer.go:15.39,16.37 1 1
+github.com/symmono/gomono/repo/composer.go:20.2,20.14 1 0
+github.com/symmono/gomono/repo/composer.go:16.37,18.3 1 1
