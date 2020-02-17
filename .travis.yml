@@ -1,16 +1,23 @@
 language: go
 
+# You don't need to test on very old versions of the Go compiler. It's the user's
+# responsibility to keep their compiler up to date.
 go:
   - 1.13.x
+
+env:
+  global:
+    secure: EAza91ABbaNjWT274OKsEQdnSPRsmXtvjzRaFwdvh+GADMPq1EidG0/wo4sFdAjQcmQfk0ykiWuAPWuY6dZAUYnGC0R3lMUrS2immn4qckwsZc8S01/8K9d9f4jOsC8ZIiL36S8WlcJ6EAKoKNINHjh6rOOOrUKsweFIYPOJxM1mp4muYk3cG/LFzBw9tmB4rOQfkd/2t5GK90NKrsLkSAGodwwrEe1Vo+pAkdwsbt4HkxhyIeKS+KEcmtCWAJp1zU5Mt3wHICfw0cU1ojn+EP5Cxtbx/cBt96iLETtrgD/3fNjgHMBi0jECfMZbYpOrWMVn+kdeKlXG4h4owZDzrcbrR+sPE9gocXw76tdhGQyVfVtSvEAITiUoCq1OyzaASesEdWKxMyp4/0zUKEl12cvZ/3gNw7K5YVQdqpxCC5Zx5y3pMYO9VTlDFdMxV2jQyxMB2NpQu06st40YN5gCUkXC6L9gpCAniQGUP1d/aXMhpfMU+hfBQ17vnANwDvbC+VPFncMh/ZhOkj1FQVPjlmqwh3TShs1mC6+g4dc4MGxt/UqhnPx2o9cYxD7y5AkcO8iUxTwWR6dGefv5uZ/WuYILwpXmQ8XaHt5Otp9Yxn1ql/j+Wt8GGpXB2gX+67pmLp50ZZqkMt7YYAuANpy8YiSJNf5BnnFMS+W7R0MAYn8= # COVERALLS_TOKEN
 
 # use the latest ubuntu environment (18.04) available on travis
 dist: bionic
 
-##install packages, before running scripts
+# install before run
 before_install:
-  - go get github.com/mattn/goveralls
-  - if ! go get github.com/golang/tools/cmd/cover; then go get golang.org/x/tools/cmd/cover; fi
+- go get github.com/mattn/goveralls
+- if ! go get github.com/golang/tools/cmd/cover; then go get golang.org/x/tools/cmd/cover; fi
 
-# script
+# script (builds)
 script:
-  - go test ./... -v
+- go test ./... -v -covermode=count -coverprofile=coverage.out
+- $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken=$COVERALLS_TOKEN
