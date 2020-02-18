@@ -1,21 +1,16 @@
-// Read compser json file
+/*
+ * This file is part of the GoMono application
+ *
+ * (c) Bertin van den Ham <bertinvandenham@gmail.com>
+ *
+ * Compser struct that contains the composer mono repo's data
+ */
 
 package repo
 
-import (
-	"strings"
-)
-
 type Composer struct {
-	name        string
-	libraryType string
-	extra       [] string
-}
-
-func SearchComposer(file string) bool {
-	if strings.Contains(file, ".json") {
-		return true
-	}
-
-	return false
+	Name        string
+	Type		string
+	Repository	map[string] string
+	Extra		map[string] map[string] string
 }

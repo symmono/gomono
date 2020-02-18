@@ -1,4 +1,10 @@
-// GOMONO - monorepo tool written in GOLang
+/*
+ * GoMono
+ *
+ * (c) Bertin van den Ham <bertinvandenham@gmail.com>
+ *
+ * Main file to startup to gomono application
+ */
 
 package main
 
@@ -8,11 +14,23 @@ import (
 )
 
 func init() {
-	fmt.Println("Init gomono application")
+	fmt.Println("Init GoMono application")
 }
 
 func main() {
-	fmt.Println("time to buld the parmas")
+	var composer repo.Composer
+	composer.Name = "symmono/page-bundle"
+	composer.Type = "symfony-bundle"
 
-	repo.SearchComposer("composer.json")
+	fmt.Println("name: ", composer.Name)
+	fmt.Println("repo: ", composer.Type)
+
+	c := repo.Composer{
+		Name:       "symmono/page-bundle",
+		Type:       "symfony-bundle",
+		Repository: nil,
+		Extra:      nil,
+	}
+
+	fmt.Println(c)
 }
